@@ -111,7 +111,7 @@
                     <button type="button" title="DeleteButton" (click)="deleteProcess(row.name)">Delete</button>
                 } -->
 
-                @if(showSaveButton){
+                @if(showSaveButton && row.edit){
                     <button type="button" title="saveButton" (click)="updateProcess(row.name)">Save</button>
                 }
 
