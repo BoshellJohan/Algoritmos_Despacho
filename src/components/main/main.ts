@@ -74,6 +74,20 @@ export class Main implements OnInit {
     this.showCancelButton = !this.showCancelButton;
   }
 
+  showCharts(){
+    this.calcMaxCapacity();
+    if(this.processesActives.length > 0){
+      if(this.showAll){
+        this.showAllCharts()
+      } else {
+        this.updateCharts()
+      }
+    } else {
+      this.hideAllCharts();
+      this.activeMessage("Digite un nuevo proceso para continuar.");
+    }
+  }
+
   editProcess(process_name:string){
     this.toggleEditMode()
 
@@ -100,13 +114,7 @@ export class Main implements OnInit {
       }
     });
 
-    this.calcMaxCapacity();
-    if(this.showAll){
-      this.showAllCharts()
-    } else {
-      this.updateCharts()
-    }
-
+    this.showCharts()
   }
 
   addProcess() {
@@ -131,19 +139,23 @@ export class Main implements OnInit {
         edit: false
       };
 
-      this.calcMaxCapacity()
-      if(this.showAll){
-        this.showAllCharts()
-      } else {
-        this.updateCharts()
-      }
+      this.showCharts()
     } else {
       this.activeMessage("Por favor digite valores válidos.");
     }
   }
 
   deleteProcess(process_name:string){
-
+    this.processService.deleteProcess(process_name, this.processesActives)
+    .then((res_process:any) => {
+      if (res_process) {
+        console.log('Proceso Eliminado:');
+        this.processesActives = res_process;
+        this.showCharts()
+      } else {
+        console.log('No se encontró el proceso');
+      }
+    });
   }
 
   cancelProcess(process_name:string){
@@ -171,7 +183,12 @@ export class Main implements OnInit {
   calcFIFO(){
     let data_test:any = []
     if(this.showChartFIFO){
-      data_test = this.algorithmService.FIFO(this.processesActives, this.maxCapacity)
+      if(this.processesActives.length != 0){
+        data_test = this.algorithmService.FIFO(this.processesActives, this.maxCapacity)
+      } else {
+        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.showChartFIFO = false;
+      }
     }
     this.processesFIFO = data_test
   }
@@ -179,7 +196,12 @@ export class Main implements OnInit {
   calcRoundRobin(){
     let data_test:any = []
     if(this.showChartRoundRobin){
-      data_test = this.algorithmService.RoundRobin(this.processesActives, this.maxCapacity)
+      if(this.processesActives.length != 0){
+        data_test = this.algorithmService.RoundRobin(this.processesActives, this.maxCapacity)
+      } else {
+        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.showChartRoundRobin = false;
+      }
     }
 
     this.processesRoundRobin = data_test
@@ -188,7 +210,12 @@ export class Main implements OnInit {
   calcSJF(){
     let data_test:any = []
     if(this.showChartSJF){
-      data_test = this.algorithmService.SJF(this.processesActives, this.maxCapacity)
+      if(this.processesActives.length != 0){
+        data_test = this.algorithmService.SJF(this.processesActives, this.maxCapacity)
+      } else {
+        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.showChartSJF = false;
+      }
     }
 
     this.processesSJF = data_test
@@ -197,7 +224,12 @@ export class Main implements OnInit {
   calcPriority(){
     let data_test:any = []
     if(this.showChartPriority){
-      data_test = this.algorithmService.Priority(this.processesActives, this.maxCapacity)
+      if(this.processesActives.length != 0){
+        data_test = this.algorithmService.Priority(this.processesActives, this.maxCapacity)
+      } else {
+        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.showChartPriority = false;
+      }
     }
 
     this.processesPriority = data_test
@@ -206,7 +238,12 @@ export class Main implements OnInit {
   calcSRTF(){
     let data_test:any = []
     if(this.showChartSRTF){
-      data_test = this.algorithmService.SRTF(this.processesActives, this.maxCapacity)
+      if(this.processesActives.length != 0){
+        data_test = this.algorithmService.SRTF(this.processesActives, this.maxCapacity)
+      } else {
+        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.showChartSRTF = false;
+      }
     }
 
     this.processesSRTF = data_test
@@ -248,23 +285,36 @@ export class Main implements OnInit {
   }
 
   showAllCharts(){
-    if(!this.showAll){
-      this.showChartFIFO = false;
-      this.showChartSJF = false;
-      this.showChartPriority = false;
-      this.showChartRoundRobin = false;
-      this.showChartSRTF = false;
-    } else {
-      this.showChartFIFO = true;
-      this.showChartSJF = true;
-      this.showChartPriority = true;
-      this.showChartRoundRobin = true;
-      this.showChartSRTF = true;
-      this.updateCharts()
-    }
+    if(this.processesActives.length > 0){
+      if(!this.showAll){
+        this.showChartFIFO = false;
+        this.showChartSJF = false;
+        this.showChartPriority = false;
+        this.showChartRoundRobin = false;
+        this.showChartSRTF = false;
+      } else {
+        this.showChartFIFO = true;
+        this.showChartSJF = true;
+        this.showChartPriority = true;
+        this.showChartRoundRobin = true;
+        this.showChartSRTF = true;
+        this.updateCharts()
+      }
 
-    this.showAll = !this.showAll
+      this.showAll = !this.showAll
+    } else {
+      this.activeMessage("Digite un nuevo para proceso para continuar.");
+    }
   }
+
+  hideAllCharts(){
+    this.showChartFIFO = false;
+    this.showChartSJF = false;
+    this.showChartPriority = false;
+    this.showChartRoundRobin = false;
+    this.showChartSRTF = false;
+    this.showAll = true;
+  };
 
   calcMaxCapacity(){
     let arrayTime = this.processesActives.map((p:any) => p.rafaga)
@@ -277,7 +327,7 @@ export class Main implements OnInit {
 
   ngOnInit(): void {
     this.processesActives.push({
-      "id": 1,
+      "id": 0,
       "name": 'P1',
       "rafaga": 2,
       "time": 0,
@@ -286,7 +336,7 @@ export class Main implements OnInit {
       "edit": false
     });
     this.processesActives.push({
-      "id": 2,
+      "id": 1,
       "name": 'P2',
       "rafaga": 6,
       "time": 1,
@@ -296,7 +346,7 @@ export class Main implements OnInit {
     });
 
     this.processesActives.push({
-      "id": 3,
+      "id": 2,
       "name": 'P3',
       "rafaga": 4,
       "time": 1,
@@ -304,6 +354,7 @@ export class Main implements OnInit {
       "quantum": 2,
       "edit": false
     });
+    this.nextId = this.processesActives.length;
   }
 
 }

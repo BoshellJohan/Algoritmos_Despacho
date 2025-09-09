@@ -73,18 +73,20 @@
     <div class="processesContainer">
       <div class="headerProcesses">
         <p class="processTitle">Procesos Activos</p>
-        <p class="countElements">Procesos: {{processesActives.length}}</p>
+        <p class="countElements">Processes: {{processesActives.length}}</p>
       </div>
       <table>
         <thead>
-          <tr>
-            <th>P</th>
-            <th>R</th>
-            <th>t</th>
-            <th>P</th>
-            <th>q</th>
-            <th>Acciones</th>
-          </tr>
+          @if(processesActives.length > 0){
+            <tr>
+              <th>Process</th>
+              <th>Burst</th>
+              <th>Time</th>
+              <th>Priority</th>
+              <th>Quantum</th>
+              <th>Acciones</th>
+            </tr>
+          }
         </thead>
         <tbody>
           @for(row of processesActives; track row.id){
@@ -110,9 +112,9 @@
                     <button type="button" title="editButton" (click)="editProcess(row.name)">Edit</button>
                 }
 
-                <!-- @if(showDeleteButton){
-                    <button type="button" title="DeleteButton" (click)="deleteProcess(row.name)">Delete</button>
-                } -->
+                @if(showDeleteButton){
+                    <button class="deleteBtn" type="button" title="DeleteButton" (click)="deleteProcess(row.name)">Delete</button>
+                }
 
                 @if(showSaveButton && row.edit){
                     <button type="button" title="saveButton" (click)="updateProcess(row.name)">Save</button>

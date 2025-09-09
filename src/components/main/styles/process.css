@@ -35,6 +35,11 @@
     align-self: flex-start;
     font-size: 0.5rem;
     color: #878282;
+    padding-left: 1rem;
+}
+
+th {
+    padding: 0.5rem;
 }
 
 td {

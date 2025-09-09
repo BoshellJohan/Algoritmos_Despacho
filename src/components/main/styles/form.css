@@ -116,3 +116,11 @@ button.addBtn {
 button.addBtn:hover {
     background-color: #4B5563;
 }
+
+button.deleteBtn {
+    background-color: #d73f19;
+}
+
+button.deleteBtn:hover {
+    background-color: #c94928;
+}

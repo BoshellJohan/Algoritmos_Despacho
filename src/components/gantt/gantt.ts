@@ -17,6 +17,7 @@ export class GanttChart{
 
   @Input() set processes(value: { id: number; name: string; time:number; rafaga:number; data: number[] }[]) {
     this._processes = value;
+    console.log(this._processes)
     this.calcTimes()
   }
 
