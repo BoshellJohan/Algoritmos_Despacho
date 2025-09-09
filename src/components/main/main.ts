@@ -255,7 +255,7 @@ export class Main implements OnInit {
     this.processesActives.push({
       "id": 1,
       "name": 'P1',
-      "rafaga": 4,
+      "rafaga": 2,
       "time": 0,
       "priority": 1,
       "quantum": 2,
@@ -264,7 +264,7 @@ export class Main implements OnInit {
     this.processesActives.push({
       "id": 2,
       "name": 'P2',
-      "rafaga": 2,
+      "rafaga": 6,
       "time": 1,
       "priority": 1,
       "quantum": 2,
@@ -274,7 +274,7 @@ export class Main implements OnInit {
     this.processesActives.push({
       "id": 3,
       "name": 'P3',
-      "rafaga": 6,
+      "rafaga": 4,
       "time": 1,
       "priority": 2,
       "quantum": 2,
@@ -284,7 +284,7 @@ export class Main implements OnInit {
     this.processesActives.push({
       "id": 4,
       "name": 'P4',
-      "rafaga": 4,
+      "rafaga": 3,
       "time": 2,
       "priority": 2,
       "quantum": 2,
@@ -294,23 +294,12 @@ export class Main implements OnInit {
     this.processesActives.push({
       "id": 5,
       "name": 'P5',
-      "rafaga": 3,
-      "time": 2,
+      "rafaga": 6,
+      "time": 3,
       "priority": 1,
       "quantum": 2,
       "edit": false
     });
-
-    this.processesActives.push({
-      "id": 6,
-      "name": 'P6',
-      "rafaga": 2,
-      "time": 3,
-      "priority": 3,
-      "quantum": 2,
-      "edit": false
-    });
-
   }
 
 }
