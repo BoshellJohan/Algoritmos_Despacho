@@ -1,17 +1,17 @@
 <div class="main">
-  <h1>Algoritmos de Despacho</h1>
+  <h1>Dispatch Algorithms</h1>
 
   <div class="top-section">
     <div class="formContainer">
-      <p class="formTitle">Formulario para añadir un proceso</p>
+      <p class="formTitle">Add a new Process</p>
       <div class="inputsContainer">
         <div class="defaultInputs">
           <div class="input">
-            <label for="name">Nombre</label>
+            <label for="name">Process Name</label>
             <input type="text" title="name" id="name" placeholder="P1" [(ngModel)]="newProcess.name" />
           </div>
           <div class="input">
-            <label for="rafaga">Rafaga</label>
+            <label for="rafaga">Burst</label>
             <input type="number" title="rafaga" id="rafaga" placeholder="4" [(ngModel)]="newProcess.rafaga"/>
           </div>
           <div class="input">
@@ -22,7 +22,7 @@
         <div class="optionalInputs">
           @if(showPriority || showRoundRobin){
           <div class="input">
-            <label for="priority">Prioridad</label>
+            <label for="priority">Priority</label>
             <input
               type="number"
               title="priority"
@@ -47,7 +47,7 @@
       </div>
       <div class="buttonContainer">
         <button type="button" title="addProcess" (click)="addProcess()">
-          Agregar Proceso
+          Add new process
         </button>
         @if(!showRoundRobin){
         <button
@@ -56,7 +56,7 @@
           title="priority-btn"
           (click)="togglePriority()"
         >
-          @if(showPriority){ Quitar prioridad } @else { Añadir prioridad }
+          @if(showPriority){ Remove Priority } @else { Add Priority }
         </button>
         }
         <button
@@ -65,14 +65,14 @@
           title="robin-btn"
           (click)="toggleRoundRobin()"
         >
-          @if(showRoundRobin){ Quitar Round Robin } @else { Añadir Round Robin }
+          @if(showRoundRobin){ Remove Quantum } @else { Add Quantum }
         </button>
       </div>
     </div>
 
     <div class="processesContainer">
       <div class="headerProcesses">
-        <p class="processTitle">Procesos Activos</p>
+        <p class="processTitle">Active Processes</p>
         <p class="countElements">Processes: {{processesActives.length}}</p>
       </div>
       <table>
@@ -134,7 +134,7 @@
 
   <div class="bottom-section">
     <div class="diagramButtonsContainer">
-        <p class="diagramBtnTitle">Sección de cálculos</p>
+        <p class="diagramBtnTitle">Calculations Section</p>
         <div class="buttonContainer">
             <button
                 class="showAll"
@@ -143,9 +143,9 @@
                 (click)="showAllCharts()"
                 >
                 @if(showAll){
-                    Mostrar todos los diagramas
+                    Show all diagrams
                 } @else {
-                    Ocultar todos los diagramas
+                    Hide all diagrams
                 }
             </button>
 
@@ -156,9 +156,9 @@
                 (click)="toggleFIFOChart()"
                 >
                 @if(showChartFIFO){
-                    Ocultar FIFO
+                    Hide FIFO
                 } @else {
-                    Mostrar FIFO
+                    Show FIFO
                 }
             </button>
 
@@ -169,9 +169,9 @@
                 (click)="toggleChartSJF()"
                 >
                 @if(showChartSJF){
-                    Ocultar SJF
+                    Hide SJF
                 } @else {
-                    Mostrar SJF
+                    Show SJF
                 }
             </button>
 
@@ -182,9 +182,9 @@
                 (click)="toggleChartRoundRobin()"
                 >
                 @if(showChartRoundRobin){
-                    Ocultar Round Robin
+                    Hide Round Robin
                 } @else {
-                    Mostrar Round Robin
+                    Show Round Robin
                 }
             </button>
 
@@ -195,9 +195,9 @@
                 (click)="toggleChartPriority()"
                 >
                 @if(showChartPriority){
-                    Ocultar diagrama de Prioridades
+                    Hide Priority Diagram
                 } @else {
-                    Mostrar diagrama de Prioridades
+                    Show Priority Diagram
                 }
             </button>
 
@@ -208,9 +208,9 @@
                 (click)="toggleChartSRTF()"
                 >
                 @if(showChartSRTF){
-                    Ocultar SRTF
+                    Hide SRTF
                 } @else {
-                    Mostrar SRTF
+                    Show SRTF
                 }
             </button>
         </div>

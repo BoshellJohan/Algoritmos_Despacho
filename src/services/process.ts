@@ -25,7 +25,13 @@ export class Process {
     let quantum = process['quantum'];
     let name = process['name'];
 
+    if(time == null || rafaga == null){
+      console.log("Está mal por null")
+      return false;
+    }
+
     if(time < 0 || rafaga < 0 || prioridad < 0 || quantum <= 0 || name === ""){
+      console.log("Está mal por empty")
       return false;
     } else {
       return true;
