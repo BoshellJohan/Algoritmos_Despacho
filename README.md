@@ -1,59 +1,115 @@
-# SoProject
+# ⚙️ CPU Scheduling Algorithms Visualizer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+An **interactive web application** built with **Angular** to visualize **CPU scheduling algorithms** such as:
 
-## Development server
+* ✅ **FIFO (First In First Out)**
+* ✅ **SJF (Shortest Job First)**
+* ✅ **Priority Scheduling**
+* ✅ **Round Robin**
+* ✅ **SRTF (Shortest Remaining Time First)**
 
-To start a local development server, run:
+The app generates **Gantt charts**, calculates **average waiting time**, **turnaround time**, and provides a **clear comparison between algorithms**.
 
-```bash
-ng serve
+![Demo Screenshot](./demo.png) <!-- Replace with actual image -->
+![Dispatch\_Algorithms](<img width="1399" height="728" alt="image" src="https://github.com/user-attachments/assets/232abf26-9141-47d7-8112-0e086a8f5c2b" />)
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-green?style=for-the-badge)](https://algoritmodespachoboshelljohan.netlify.app/)
+[![Built With](https://img.shields.io/badge/Angular-19-red?style=for-the-badge\&logo=angular)](https://angular.dev)
+
+---
+
+## 🎯 Features
+
+* 🔹 **Multiple Scheduling Algorithms** – FIFO, SJF, Priority, Round Robin, and SRTF
+* 📊 **Dynamic Gantt Chart** – Visualize process execution in real-time
+* ⏱ **Performance Metrics** – Average waiting time and turnaround time
+* 🧩 **Custom Input** – Add processes with `burst time`, `arrival time`, `priority`, and `quantum`
+* 🔄 **Interactive Controls** – Show/hide algorithms and update in real-time
+* ✅ **Responsive UI** – Works on different screen sizes
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/BoshellJohan/Algoritmos_Despacho.git
+   cd Algoritmos_Despacho
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+
+   ```bash
+   ng serve
+   ```
+
+   Navigate to: **[http://localhost:4200/](http://localhost:4200/)**
+
+4. **Build for production**
+
+   ```bash
+   ng build
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+so_project/
+├── src/
+│   ├── app/
+│   │   ├── components/      # UI components (Gantt chart, inputs, etc.)
+│   │   ├── services/        # Algorithm logic (FIFO, SJF, etc.)
+│   │   ├── models/          # Process interface & types
+│   │   └── app.component.ts # Main application logic
+│   ├── assets/              # Static resources
+│   └── main.ts              # Angular entry point
+└── angular.json             # Angular config
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📌 How It Works
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+👉 **\[Components]**
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠 Built With
 
-```bash
-ng generate --help
-```
+* **Angular 20**
+* **TypeScript**
+* **RxJS**
+* **Netlify**
 
-## Building
+---
 
-To build the project run:
+## ✅ Deployment on Netlify
 
-```bash
-ng build
-```
+If deploying on **Netlify**, ensure your `angular.json` is configured with:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+* `outputPath: dist/so_project/browser` for the client build
+* Use `netlify.toml` for SSR support (optional)
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📸 Screenshots
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🤝 Contributing
 
-```bash
-ng e2e
-```
+Feel free to fork this project and submit pull requests with improvements or new features.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Do you want me to **also include a section with example algorithms and expected Gantt outputs in Markdown tables** (for FIFO, SJF, etc.) to make the README even more complete? Or should I keep it more general?
