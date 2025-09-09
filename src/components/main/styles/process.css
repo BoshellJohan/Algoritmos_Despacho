@@ -51,3 +51,18 @@ td {
     border-radius: 0.6rem;
     /* background: #d3d0d0; */
 }
+
+.messageContainer {
+    position: absolute;
+    top: 1.5rem;
+    left: 1rem;
+    background-color: #df6e6e;
+    border-radius: 0.4rem;
+    transition: 1s background-color;
+    opacity: 0.8;
+}
+
+.message {
+    color: white;
+    padding: 0.5rem 0.8rem;
+}

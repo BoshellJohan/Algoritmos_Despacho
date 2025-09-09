@@ -6,7 +6,7 @@ import { last } from 'rxjs';
   providedIn: 'root'
 })
 export class Algorithms {
-  maxCapacity:number = 25;
+  maxCapacity:number = 20;
 
   //   processes = [
   //   { id: 0, name: 'P1', intervals: [[1, 2], [4, 5]] },
@@ -41,7 +41,8 @@ export class Algorithms {
     return processes.every((p:any) => p['procesado'])
   }
 
-  FIFO(processes:any){
+  FIFO(processes:any, maxCapacity:number){
+    this.maxCapacity = maxCapacity;
     let currentTime = 0
     let processesFIFO:{id: number, name:string, time:number; rafaga:number; data:any}[] = []
     let algorithCompleted:boolean = false;
@@ -108,7 +109,8 @@ export class Algorithms {
     })
   }
 
-  RoundRobin(processes:any){
+  RoundRobin(processes:any, maxCapacity:number){
+    this.maxCapacity = maxCapacity;
     let q = processes[0]['quantum'];
     let currentTime = 0
     let processesRoundRobin:{id: number, name:string, time:number; rafaga:number; data:any}[] = []
@@ -181,9 +183,8 @@ export class Algorithms {
     return processesRoundRobin;
   }
 
-
-
-  SJF(processes:any){
+  SJF(processes:any, maxCapacity:number){
+    this.maxCapacity = maxCapacity;
     let currentTime = 0
     let processesSJF:{id: number, name:string, time:number; rafaga:number; data:any}[] = []
     let algorithCompleted:boolean = false;
@@ -240,7 +241,8 @@ export class Algorithms {
   }
 
 
-  Priority(processes:any){
+  Priority(processes:any, maxCapacity:number){
+    this.maxCapacity = maxCapacity;
     let currentTime = 0
     let processesPriority:{id: number, name:string, time:number; rafaga:number; data:any}[] = []
     let algorithCompleted:boolean = false;
@@ -296,7 +298,8 @@ export class Algorithms {
     return processesPriority;
   }
 
-  SRTF(processes: any) {
+  SRTF(processes: any, maxCapacity:number){
+    this.maxCapacity = maxCapacity;
     let currentTime = 0;
     let processesSRTF: { id: number, name: string, data: any }[] = [];
     let algorithCompleted = false;

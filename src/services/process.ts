@@ -9,5 +9,20 @@ export class Process {
     const result = processes.find(p => p.name === name);
     resolve(result);
   });
-}
+  }
+
+  isValidProcess(process:any):boolean{
+    let time = process['time'];
+    let rafaga = process['rafaga'];
+    let prioridad = process['prioridad'];
+    let quantum = process['quantum'];
+    let name = process['name'];
+
+    if(time < 0 || rafaga < 0 || prioridad < 0 || quantum <= 0 || name === ""){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }

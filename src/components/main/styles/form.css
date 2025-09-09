@@ -1,0 +1,118 @@
+h1 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #eff1f3;
+    padding: 1rem;
+}
+
+.top-section{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.formContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.6rem;
+    width: fit-content;
+    background-color: #fff;
+}
+
+.formTitle {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+.inputsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    width: auto;
+    gap: 1rem;
+}
+
+.defaultInputs,
+.optionalInputs {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.4rem;
+    height: fit-content;
+}
+
+.defaultInputs {
+    width: 100%;
+}
+
+.input {
+    background-color: rgb(242, 243, 242);
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+}
+
+.input label {
+    text-align: left;
+    padding-bottom: 0.2rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.input input {
+    height: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border-style: none;
+    background-color: #fff;
+    border-color: #D1D5DB;
+    box-shadow: 0 0 2px rgba(37, 99, 235, 0.4);
+}
+
+.input input:focus {
+    outline: 1px solid #2563EB;
+}
+
+.buttonContainer {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    background-color: #2563EB;
+    color: #FFFFFF;
+    border-style: none;
+    width: fit-content;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1D4ED8;
+}
+
+button.addBtn {
+    background-color: #6B7280;
+}
+
+button.addBtn:hover {
+    background-color: #4B5563;
+}

@@ -11,10 +11,10 @@ import { Algorithms } from '../../services/algorithms';
   standalone: true,
   imports: [GanttChart, FormsModule],
   templateUrl: './main.html',
-  styleUrls: ['./form.css', './process.css', './charts.css']
+  styleUrls: ['./styles/form.css', './styles/process.css', './styles/charts.css']
 })
 export class Main implements OnInit {
-  maxCapacity = 25;
+  maxCapacity = 20;
   private nextId:number = 0;
   data_processed:{id: number, name:string, time:number; rafaga:number; data:any[]}[] = []
   processesFIFO:{id: number, name:string, time:number; rafaga:number; data:any[]}[] = []
@@ -38,13 +38,17 @@ export class Main implements OnInit {
   showChartSRTF:boolean = false;
   showAll:boolean = true;
 
+  //Message
+  message:string = ""
+  showMessage:boolean = false;
+
   newProcess = {
     "id": this.nextId,
     "name": "",
     "rafaga": 0,
     "time": 0,
     "priority": 0,
-    "quantum": 0,
+    "quantum": 1,
     "edit": false,
   }
 
@@ -55,6 +59,13 @@ export class Main implements OnInit {
 
   constructor(public processService:Process, public algorithmService:Algorithms){};
 
+  activeMessage(message:string){
+    this.showMessage = true;
+    this.message = message;
+    setTimeout(() => {
+      this.showMessage = false;
+    }, 4000)
+  }
 
   toggleEditMode(){
     this.showEditButton = !this.showEditButton;
@@ -89,6 +100,7 @@ export class Main implements OnInit {
       }
     });
 
+    this.calcMaxCapacity();
     if(this.showAll){
       this.showAllCharts()
     } else {
@@ -105,25 +117,29 @@ export class Main implements OnInit {
       id: this.nextId++
     };
 
-    this.processesActives.push(processToAdd);
+    if(this.processService.isValidProcess(processToAdd)){
+      this.processesActives.push(processToAdd);
 
-    // Resetea el formulario
-    this.newProcess = {
-      id: this.nextId,
-      name: "",
-      rafaga: 0,
-      time: 0,
-      priority: 0,
-      quantum: 0,
-      edit: false
-    };
+      // Resetea el formulario
+      this.newProcess = {
+        id: this.nextId,
+        name: "",
+        rafaga: 0,
+        time: 0,
+        priority: 0,
+        quantum: 1,
+        edit: false
+      };
 
-    if(this.showAll){
-      this.showAllCharts()
+      this.calcMaxCapacity()
+      if(this.showAll){
+        this.showAllCharts()
+      } else {
+        this.updateCharts()
+      }
     } else {
-      this.updateCharts()
+      this.activeMessage("Por favor digite valores válidos.");
     }
-
   }
 
   deleteProcess(process_name:string){
@@ -155,7 +171,7 @@ export class Main implements OnInit {
   calcFIFO(){
     let data_test:any = []
     if(this.showChartFIFO){
-      data_test = this.algorithmService.FIFO(this.processesActives)
+      data_test = this.algorithmService.FIFO(this.processesActives, this.maxCapacity)
     }
     this.processesFIFO = data_test
   }
@@ -163,7 +179,7 @@ export class Main implements OnInit {
   calcRoundRobin(){
     let data_test:any = []
     if(this.showChartRoundRobin){
-      data_test = this.algorithmService.RoundRobin(this.processesActives)
+      data_test = this.algorithmService.RoundRobin(this.processesActives, this.maxCapacity)
     }
 
     this.processesRoundRobin = data_test
@@ -172,7 +188,7 @@ export class Main implements OnInit {
   calcSJF(){
     let data_test:any = []
     if(this.showChartSJF){
-      data_test = this.algorithmService.SJF(this.processesActives)
+      data_test = this.algorithmService.SJF(this.processesActives, this.maxCapacity)
     }
 
     this.processesSJF = data_test
@@ -181,7 +197,7 @@ export class Main implements OnInit {
   calcPriority(){
     let data_test:any = []
     if(this.showChartPriority){
-      data_test = this.algorithmService.Priority(this.processesActives)
+      data_test = this.algorithmService.Priority(this.processesActives, this.maxCapacity)
     }
 
     this.processesPriority = data_test
@@ -190,7 +206,7 @@ export class Main implements OnInit {
   calcSRTF(){
     let data_test:any = []
     if(this.showChartSRTF){
-      data_test = this.algorithmService.SRTF(this.processesActives)
+      data_test = this.algorithmService.SRTF(this.processesActives, this.maxCapacity)
     }
 
     this.processesSRTF = data_test
@@ -248,6 +264,14 @@ export class Main implements OnInit {
     }
 
     this.showAll = !this.showAll
+  }
+
+  calcMaxCapacity(){
+    let arrayTime = this.processesActives.map((p:any) => p.rafaga)
+    let capacity = arrayTime.reduce((acc:any, cur:any) =>  acc + cur, 0)
+    if(capacity > this.maxCapacity){
+      this.maxCapacity = capacity + 5;
+    }
   }
 
 

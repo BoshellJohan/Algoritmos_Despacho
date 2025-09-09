@@ -16,6 +16,7 @@
 .chartContainer {
     border-radius: 0.5rem;
     border: 1px solid black;
+    max-width: 40rem;
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE 10+ */
