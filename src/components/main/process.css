@@ -14,11 +14,27 @@
     -ms-overflow-style: none; /* IE 10+ */
 }
 
+.headerProcesses {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
 .processTitle {
     text-align: center;
+    justify-self: center;
+    align-self: center;
     font-size: 1.4rem;
     margin-bottom: 0.8rem;
     font-weight: bold;
+}
+
+.countElements {
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-start;
+    font-size: 0.5rem;
+    color: #878282;
 }
 
 td {
