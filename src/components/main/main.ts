@@ -84,7 +84,7 @@ export class Main implements OnInit {
       }
     } else {
       this.hideAllCharts();
-      this.activeMessage("Digite un nuevo proceso para continuar.");
+      this.activeMessage("Add a new process to continue");
     }
   }
 
@@ -141,7 +141,7 @@ export class Main implements OnInit {
 
       this.showCharts()
     } else {
-      this.activeMessage("Por favor digite valores válidos.");
+      this.activeMessage("Add a valid input");
     }
   }
 
@@ -149,7 +149,6 @@ export class Main implements OnInit {
     this.processService.deleteProcess(process_name, this.processesActives)
     .then((res_process:any) => {
       if (res_process) {
-        console.log('Proceso Eliminado:');
         this.processesActives = res_process;
         this.showCharts()
       } else {
@@ -186,7 +185,7 @@ export class Main implements OnInit {
       if(this.processesActives.length != 0){
         data_test = this.algorithmService.FIFO(this.processesActives, this.maxCapacity)
       } else {
-        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.activeMessage('Add a new process to continue')
         this.showChartFIFO = false;
       }
     }
@@ -199,7 +198,7 @@ export class Main implements OnInit {
       if(this.processesActives.length != 0){
         data_test = this.algorithmService.RoundRobin(this.processesActives, this.maxCapacity)
       } else {
-        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.activeMessage('Add a new process to continue')
         this.showChartRoundRobin = false;
       }
     }
@@ -213,7 +212,7 @@ export class Main implements OnInit {
       if(this.processesActives.length != 0){
         data_test = this.algorithmService.SJF(this.processesActives, this.maxCapacity)
       } else {
-        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.activeMessage('Add a new process to continue')
         this.showChartSJF = false;
       }
     }
@@ -227,7 +226,7 @@ export class Main implements OnInit {
       if(this.processesActives.length != 0){
         data_test = this.algorithmService.Priority(this.processesActives, this.maxCapacity)
       } else {
-        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.activeMessage('Add a new process to continue')
         this.showChartPriority = false;
       }
     }
@@ -241,7 +240,7 @@ export class Main implements OnInit {
       if(this.processesActives.length != 0){
         data_test = this.algorithmService.SRTF(this.processesActives, this.maxCapacity)
       } else {
-        this.activeMessage('Ingrese un nuevo proceso para realizar un cálculo.')
+        this.activeMessage('Add a new process to continue')
         this.showChartSRTF = false;
       }
     }
@@ -303,7 +302,7 @@ export class Main implements OnInit {
 
       this.showAll = !this.showAll
     } else {
-      this.activeMessage("Digite un nuevo para proceso para continuar.");
+      this.activeMessage("Add a new process to continue");
     }
   }
 
