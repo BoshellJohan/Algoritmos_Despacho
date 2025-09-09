@@ -280,26 +280,6 @@ export class Main implements OnInit {
       "quantum": 2,
       "edit": false
     });
-
-    this.processesActives.push({
-      "id": 4,
-      "name": 'P4',
-      "rafaga": 3,
-      "time": 2,
-      "priority": 2,
-      "quantum": 2,
-      "edit": false
-    });
-
-    this.processesActives.push({
-      "id": 5,
-      "name": 'P5',
-      "rafaga": 6,
-      "time": 3,
-      "priority": 1,
-      "quantum": 2,
-      "edit": false
-    });
   }
 
 }
