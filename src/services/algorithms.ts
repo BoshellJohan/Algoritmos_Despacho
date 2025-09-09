@@ -143,14 +143,12 @@ export class Algorithms {
         }
 
         if(data[i]['rafaga'] <= 0){
-          console.log("Llegó a su fin el proceso: ", data[i]["name"])
-          data[i]['procesado'] = true;
+          data[i]['procesado'] = true; //Llegó a su fin el proceso
         }
 
         atLeastOneProcessed = true;
 
         if(this.includesProcess(processesRoundRobin, data[i]['id'])){
-          console.log("Se está agregando nuevamente un intervalo")
           this.addNewInterval(processesRoundRobin, data[i]['id'], intervalo);
         } else {
           processesRoundRobin.push({
@@ -176,10 +174,8 @@ export class Algorithms {
       algorithCompleted = this.algorithmCompleted(data);
     }
 
-    console.log(processesRoundRobin)
     //Al final sí se transforman los intervalos a 0's y 1's
     processesRoundRobin.forEach((p:any) => {
-      console.log('Intervalos: ', p['data'])
       p['data'] = this.transformData(p['data']);
     })
     return processesRoundRobin;
@@ -198,7 +194,6 @@ export class Algorithms {
     })
 
     let copy_sort = copy_data.sort((a:any, b:any) => a['rafaga'] - b['rafaga'])
-    console.log(copy_sort)
     let data = JSON.parse(JSON.stringify(copy_sort));
 
     let i = 0;
@@ -211,8 +206,6 @@ export class Algorithms {
       rafaga = data[i]['rafaga'];
 
       if(time <= currentTime && !data[i].procesado){
-        console.log('Pasa el proceso: ', data[i]['name'])
-        console.log(data)
         data[i]['procesado'] = true;
         atLeastOneProcessed = true;
         let intervalo = [currentTime, currentTime + rafaga - 1];
@@ -258,7 +251,6 @@ export class Algorithms {
     })
 
     let copy_sort = copy_data.sort((a:any, b:any) => a['priority'] - b['priority'])
-    console.log(copy_sort)
     let data = JSON.parse(JSON.stringify(copy_sort));
 
     let i = 0;
@@ -271,8 +263,6 @@ export class Algorithms {
       rafaga = data[i]['rafaga'];
 
       if(time <= currentTime && !data[i].procesado){
-        console.log('Pasa el proceso: ', data[i]['name'])
-        console.log(data)
         data[i]['procesado'] = true;
         atLeastOneProcessed = true;
         let intervalo = [currentTime, currentTime + rafaga - 1];
@@ -437,7 +427,6 @@ export class Algorithms {
 
 
   calcTiempoEspera(data:any):number {
-    console.log(data)
     let tiempoEspera = 0;
 
     let hasIntervalsFlag = false;
@@ -450,7 +439,6 @@ export class Algorithms {
 
 
     if(!hasIntervalsFlag){
-      console.log("Es un algoritmo no expulsivo")
       let summatory = 0;
       let copyData = JSON.parse(JSON.stringify(data));
       copyData.forEach((p:any) => {
@@ -486,7 +474,6 @@ export class Algorithms {
   }
 
   calcTiempoSistema(data:any){
-    console.log(data);
     let tiempoSistema = 0;
 
     let summatory = 0;
@@ -494,9 +481,9 @@ export class Algorithms {
     copyData.forEach((p:any) => {
       let time = p.time;
       let tiempo_finalizador = this.getEndedTime(p['data'])
-      console.log(`${tiempo_finalizador} - ${time}`);
+      // console.log(`${tiempo_finalizador} - ${time}`);
       summatory += tiempo_finalizador - time
-      console.log(summatory, tiempo_finalizador)
+      // console.log(summatory, tiempo_finalizador)
     })
 
     tiempoSistema = summatory / copyData.length;

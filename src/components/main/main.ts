@@ -69,10 +69,10 @@ export class Main implements OnInit {
     this.processService.getProcessByName(process_name, this.processesActives)
     .then(res_process => {
       if (res_process) {
-        console.log('Proceso encontrado:', res_process);
+        // console.log('Proceso encontrado:', res_process);
         res_process['edit'] = true;
       } else {
-        console.log('No se encontró el proceso');
+        // console.log('No se encontró el proceso');
       }
     });
   }
@@ -82,7 +82,7 @@ export class Main implements OnInit {
     this.processService.getProcessByName(process_name, this.processesActives)
     .then(res_process => {
       if (res_process) {
-        console.log('Proceso actualizado:', res_process);
+        // console.log('Proceso actualizado:', res_process);
         res_process['edit'] = false;
       } else {
         console.log('No se encontró el proceso');
@@ -157,10 +157,6 @@ export class Main implements OnInit {
     if(this.showChartFIFO){
       data_test = this.algorithmService.FIFO(this.processesActives)
     }
-    console.group("FIFO")
-    console.log(data_test);
-    console.groupEnd()
-
     this.processesFIFO = data_test
   }
 
@@ -169,9 +165,6 @@ export class Main implements OnInit {
     if(this.showChartRoundRobin){
       data_test = this.algorithmService.RoundRobin(this.processesActives)
     }
-    console.group("Round Robin")
-    console.log(data_test);
-    console.groupEnd()
 
     this.processesRoundRobin = data_test
   }
@@ -181,9 +174,6 @@ export class Main implements OnInit {
     if(this.showChartSJF){
       data_test = this.algorithmService.SJF(this.processesActives)
     }
-    console.group("SJF")
-    console.log(data_test);
-    console.groupEnd()
 
     this.processesSJF = data_test
   }
@@ -193,9 +183,6 @@ export class Main implements OnInit {
     if(this.showChartPriority){
       data_test = this.algorithmService.Priority(this.processesActives)
     }
-    console.group("Priority")
-    console.log(data_test);
-    console.groupEnd()
 
     this.processesPriority = data_test
   }
@@ -205,9 +192,6 @@ export class Main implements OnInit {
     if(this.showChartSRTF){
       data_test = this.algorithmService.SRTF(this.processesActives)
     }
-    console.group("SRTF")
-    console.log(data_test);
-    console.groupEnd()
 
     this.processesSRTF = data_test
   }
