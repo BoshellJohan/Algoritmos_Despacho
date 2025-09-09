@@ -1,0 +1,41 @@
+.chartsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.bottom-section{
+    background-color: #fff;
+    border-radius: 0.6rem;
+    padding: 1rem;
+}
+
+.diagramBtnTitle {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+.diagramButtonsContainer {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1rem;
+}
+
+.diagramButtonsContainer > .buttonContainer {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    padding: 1rem 4rem;
+}
+
+button.chart {
+    background-color: #6B7280;
+}
+
+button.chart:hover {
+    background-color: #4B5563;
+}

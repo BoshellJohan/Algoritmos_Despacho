@@ -1,0 +1,47 @@
+<div class="ganttContainer">
+  <h1 class="titleChart">{{titleChart}}</h1>
+  <div class="chartContainer">
+    @for(item of processes; track item.id){
+    <div class="row">
+      <div class="rowName">
+        <p>{{item.name}}</p>
+      </div>
+
+      <div class="cells">
+        @for(cell of item.data; track $index){
+        <div class="cell">
+          <div [class.fillCell]="cell === 1">
+          </div>
+        </div>
+      }
+      </div>
+    </div>
+    }
+    <div class="timer">
+      <div class="row">
+        <div class="rowName">
+          <p>t</p>
+        </div>
+        <div class="cells">
+          @for(time of timer; track $index){
+          <div class="cell">
+            <div class="cellTime">{{time}}</div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timesContainer">
+    <div class="tiempoEspera">
+      <p class="title">Tiempo de Espera</p>
+      <p class="time">TE = {{tiempoEspera}}
+      </p>
+    </div>
+    <div class="tiempoSalida">
+      <p class="title">Tiempo de Sistema</p>
+      <p class="time">TS = {{tiempoSistema}}
+    </div>
+  </div>
+</div>

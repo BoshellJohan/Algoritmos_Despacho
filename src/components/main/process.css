@@ -1,0 +1,37 @@
+.processesContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.6rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: #fff;
+
+    max-height: 22rem;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+.processTitle {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+td {
+    text-align: center;
+    padding: 0.6rem;
+}
+
+.cellInput {
+    max-width: 3rem;
+    width: fit-content;
+    border-style: none;
+    padding: 0.4rem;
+    background-color: rgb(242, 243, 242);
+    border-radius: 0.6rem;
+    /* background: #d3d0d0; */
+}

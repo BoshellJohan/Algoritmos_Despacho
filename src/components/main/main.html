@@ -1,0 +1,258 @@
+<div class="main">
+  <h1>Algoritmos de Despacho</h1>
+
+  <div class="top-section">
+    <div class="formContainer">
+      <p class="formTitle">Formulario para añadir un proceso</p>
+      <div class="inputsContainer">
+        <div class="defaultInputs">
+          <div class="input">
+            <label for="name">Nombre</label>
+            <input type="text" title="name" id="name" placeholder="P1" [(ngModel)]="newProcess.name" />
+          </div>
+          <div class="input">
+            <label for="rafaga">Rafaga</label>
+            <input type="number" title="rafaga" id="rafaga" placeholder="4" [(ngModel)]="newProcess.rafaga"/>
+          </div>
+          <div class="input">
+            <label for="time">Time</label>
+            <input type="number" title="time" id="time" placeholder="3" [(ngModel)]="newProcess.time"/>
+          </div>
+        </div>
+        <div class="optionalInputs">
+          @if(showPriority || showRoundRobin){
+          <div class="input">
+            <label for="priority">Prioridad</label>
+            <input
+              type="number"
+              title="priority"
+              id="priority"
+              placeholder="1"
+              [(ngModel)]="newProcess.priority"
+            />
+          </div>
+          } @if(showRoundRobin){
+          <div class="input">
+            <label for="round_robin">Quantum</label>
+            <input
+              type="number"
+              title="Round_Robin"
+              id="round_robin"
+              placeholder="1"
+              [(ngModel)]="newProcess.quantum"
+            />
+          </div>
+          }
+        </div>
+      </div>
+      <div class="buttonContainer">
+        <button type="button" title="addProcess" (click)="addProcess()">
+          Agregar Proceso
+        </button>
+        @if(!showRoundRobin){
+        <button
+          class="addBtn"
+          type="button"
+          title="priority-btn"
+          (click)="togglePriority()"
+        >
+          @if(showPriority){ Quitar prioridad } @else { Añadir prioridad }
+        </button>
+        }
+        <button
+          class="addBtn"
+          type="button"
+          title="robin-btn"
+          (click)="toggleRoundRobin()"
+        >
+          @if(showRoundRobin){ Quitar Round Robin } @else { Añadir Round Robin }
+        </button>
+      </div>
+    </div>
+
+    <div class="processesContainer">
+      <p class="processTitle">Procesos Activos</p>
+      <table>
+        <thead>
+          <tr>
+            <th>P</th>
+            <th>R</th>
+            <th>t</th>
+            <th>P</th>
+            <th>q</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(row of processesActives; track row.id){
+          <tr>
+            <td>
+                <input class="cellInput" type="text" title="name" [(ngModel)]="row.name" [disabled]="!row.edit"/>
+            </td>
+            <td>
+                <input class="cellInput" type="number" title="rafaga" [(ngModel)]="row.rafaga" [disabled]="!row.edit"/>
+            </td>
+            <td>
+                <input class="cellInput" type="number" title="time" [(ngModel)]="row.time" [disabled]="!row.edit"/>
+            </td>
+            <td>
+                <input class="cellInput" type="number" title="priority" [(ngModel)]="row.priority" [disabled]="!row.edit"/>
+            </td>
+            <td>
+                <input class="cellInput" type="number" title="quantum" [(ngModel)]="row.quantum" [disabled]="!row.edit"/>
+            </td>
+            <td>
+              <div class="buttonContainer">
+                @if(showEditButton){
+                    <button type="button" title="editButton" (click)="editProcess(row.name)">Edit</button>
+                }
+
+                <!-- @if(showDeleteButton){
+                    <button type="button" title="DeleteButton" (click)="deleteProcess(row.name)">Delete</button>
+                } -->
+
+                @if(showSaveButton){
+                    <button type="button" title="saveButton" (click)="updateProcess(row.name)">Save</button>
+                }
+
+                <!-- @if(showCancelButton){
+                    <button type="button" title="cancelButton" (click)="cancelProcess(row.name)">Cancel</button>
+                } -->
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="diagramButtonsContainer">
+        <p class="diagramBtnTitle">Sección de cálculos</p>
+        <div class="buttonContainer">
+            <button
+                class="showAll"
+                type="button"
+                title="showAll"
+                (click)="showAllCharts()"
+                >
+                @if(showAll){
+                    Mostrar todos los diagramas
+                } @else {
+                    Ocultar todos los diagramas
+                }
+            </button>
+
+            <button
+                class="chartFIFO chart"
+                type="button"
+                title="chartFIFO"
+                (click)="toggleFIFOChart()"
+                >
+                @if(showChartFIFO){
+                    Ocultar FIFO
+                } @else {
+                    Mostrar FIFO
+                }
+            </button>
+
+            <button
+                class="ChartSJF chart"
+                type="button"
+                title="ChartSJF"
+                (click)="toggleChartSJF()"
+                >
+                @if(showChartSJF){
+                    Ocultar SJF
+                } @else {
+                    Mostrar SJF
+                }
+            </button>
+
+            <button
+                class="ChartRoundRobin chart"
+                type="button"
+                title="ChartRoundRobin"
+                (click)="toggleChartRoundRobin()"
+                >
+                @if(showChartRoundRobin){
+                    Ocultar Round Robin
+                } @else {
+                    Mostrar Round Robin
+                }
+            </button>
+
+            <button
+                class="ChartPriority chart"
+                type="button"
+                title="ChartPriority"
+                (click)="toggleChartPriority()"
+                >
+                @if(showChartPriority){
+                    Ocultar diagrama de Prioridades
+                } @else {
+                    Mostrar diagrama de Prioridades
+                }
+            </button>
+
+            <button
+                class="ChartSRTF chart"
+                type="button"
+                title="ChartSRTF"
+                (click)="toggleChartSRTF()"
+                >
+                @if(showChartSRTF){
+                    Ocultar SRTF
+                } @else {
+                    Mostrar SRTF
+                }
+            </button>
+        </div>
+    </div>
+
+
+    <div class="chartsContainer">
+        @if(showChartFIFO){
+            <app-gantt
+                [processes]="processesFIFO"
+                titleChart="FIFO"
+                [maxCapacity]="maxCapacity"
+            ></app-gantt>
+        }
+
+        @if(showChartSJF){
+            <app-gantt
+            [processes]="processesSJF"
+            titleChart="Shortest Job First"
+            [maxCapacity]="maxCapacity"
+            ></app-gantt>
+        }
+
+        @if(showChartPriority){
+            <app-gantt
+            [processes]="processesPriority"
+            titleChart="Prioridades"
+            [maxCapacity]="maxCapacity"
+            ></app-gantt>
+        }
+
+        @if(showChartSRTF){
+            <app-gantt
+            [processes]="processesSRTF"
+            titleChart="Shortest Remaining Time First"
+            [maxCapacity]="maxCapacity"
+            ></app-gantt>
+        }
+
+        @if(showChartRoundRobin){
+            <app-gantt
+            [processes]="processesRoundRobin"
+            titleChart="Round Robin"
+            [maxCapacity]="maxCapacity"
+            ></app-gantt>
+        }
+    </div>
+
+  </div>
+</div>
